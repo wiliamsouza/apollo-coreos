@@ -34,7 +34,7 @@ coreos:
 
         [Install]
         WantedBy=sockets.target
-  - path: /etc/env.d/marlito
+  - path: /etc/env.d/apollo
     permissions: 644
     owner: root
     content: |
