@@ -96,7 +96,7 @@ fleet
 Configuring `fleet`.
 
 ```
-export FLEETCTL_TUNNEL=172.16.8.101
+export FLEETCTL_TUNNEL=172.17.8.101
 ```
 
 ```
