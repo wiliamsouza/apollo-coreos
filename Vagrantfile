@@ -85,7 +85,7 @@ Vagrant.configure("2") do |config|
         vb.cpus = $vb_cpus
       end
 
-      ip = "172.17.8.#{i+100}"
+      ip = "172.16.16.#{i+100}"
       config.vm.network :private_network, ip: ip
 
       # Uncomment below to enable NFS for sharing the host machine into the coreos-vagrant VM.
