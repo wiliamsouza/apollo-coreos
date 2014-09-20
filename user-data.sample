@@ -39,7 +39,7 @@ write_files:
     permissions: 644
     owner: root
     content: |
-      APOLLO_ENVIRONMENT=development
+      APOLLO_ENVIRONMENT=local
       DOCKER_REGISTRY=local.registry.apollolab.com.br:5000
   - path: /home/core/.ssh/authorized_keys.d/wiliamsouza
     permissions: 0600
