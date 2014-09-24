@@ -15,10 +15,10 @@ This repo uses Vagrant and Virtualbox to create three CoreOS virtual machine.
 Configuring
 -----------
 
-Copy `user-data.sample` to `data-sample`.
+Copy `user-data.sample` to `user-data`.
 
 ```
-cp user-data.sample data-sample
+cp user-data.sample user-data
 ```
 
 Generate a new `etcd` token [here](https://discovery.etcd.io/new) and
@@ -51,7 +51,7 @@ Add the following to `~/.ssh/config`:
 ```
 Host coreos
   User     core
-  HostName 172.17.8.101
+  HostName 172.16.16.101
   IdentityFile ~/.ssh/id_rsa.pub
 ```
 
@@ -80,8 +80,6 @@ To get in a node use.
 
 ```
 vagrant ssh apollo-01
-vagrant ssh apollo-02
-vagrant ssh apollo-03
 ```
 
 Starting registry
@@ -96,7 +94,7 @@ fleet
 Configuring `fleet`.
 
 ```
-export FLEETCTL_TUNNEL=172.17.8.101
+export FLEETCTL_TUNNEL=172.16.16.101
 ```
 
 ```
