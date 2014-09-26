@@ -24,9 +24,6 @@ cp user-data.sample user-data
 Generate a new `etcd` token [here](https://discovery.etcd.io/new) and
 change `discovery:` option in `data-sample`.
 
-Change `DOCKER_REGISTRY` in `user-data` to point to your
-local running `docker-registry` usually it will be local ip address.
-
 Add your ssh public key in `user-data` changing `path` and `content` as
 the example.
 
@@ -37,10 +34,37 @@ the example.
   content: |
     <SSH-RSA-KEY-HERE>
 ```
+
 Copy `config.rb.sample` to `config.rb`
 
 ```
 cp config.rb.sample config.rb
+```
+
+Create a shared folder.
+
+```
+mkdir -p ~/.containers/apollo
+```
+
+Environment
+-----------
+
+Set the environment you are working on.
+
+```
+export APOLLO_ENVIRONMENT=local
+```
+
+It recommended to add it to `~/.bashrc`.
+
+Common address
+--------------
+
+As root set more one ip address to `eth0`.
+
+```
+ifconfig eth0:0 172.16.16.16
 ```
 
 ssh
@@ -59,6 +83,7 @@ Add your key:
 
 ```
 ssh-add ~/.ssh/id_rsa
+ssh-add  ~/.vagrant.d/insecure_private_key
 ```
 
 Check if it is correctly loaded:
@@ -100,7 +125,7 @@ export FLEETCTL_TUNNEL=172.16.16.101
 ```
 fleetctl list-machines
 MACHINE         IP              METADATA
-b3dac926...     172.17.8.101    -
+b3dac926...     172.16.16.101    -
 ```
 
 Loading a service:
@@ -112,13 +137,13 @@ ln -s api.service api@8000.service
 
 ```
 fleetctl load api@8000.service
-Job api.service loaded on b3dac926.../172.17.8.101
+Job api.service loaded on b3dac926.../172.16.16.101
 ```
 
 ```
 fleetctl list-units
 UNIT            STATE   LOAD    ACTIVE          SUB     DESC           MACHINE
-api@8000.service     loaded  loaded  inactive        dead    apollo-api    b3dac926.../172.17.8.101
+api@8000.service     loaded  loaded  inactive        dead    apollo-api    b3dac926.../172.16.16.101
 ```
 
 ```
