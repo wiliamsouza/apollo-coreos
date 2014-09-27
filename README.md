@@ -54,9 +54,11 @@ Set the environment you are working on.
 
 ```
 export APOLLO_ENVIRONMENT=local
+export APOLLO_TAG=$APOLLO_ENVIRONMENT
+export DOCKER_REGISTRY="${APOLLO_ENVIRONMENT}.registry.apollolab.com.br:5000"
 ```
 
-It recommended to add it to `~/.bashrc`.
+It recommended to add it to `~/.bashrc`. It's used in other projects.
 
 Common address
 --------------
@@ -113,7 +115,7 @@ Starting registry
 You will need a local `docker-registry`. For more info
 [see](https://github.com/wiliamsouza/apollo/blob/develop/registry/README.md)
 
-fleet
+Fleet
 -----
 
 Configuring `fleet`.
@@ -126,35 +128,6 @@ export FLEETCTL_TUNNEL=172.16.16.101
 fleetctl list-machines
 MACHINE         IP              METADATA
 b3dac926...     172.16.16.101    -
-```
-
-Loading a service:
-
-```
-cd api/systemd/
-ln -s api.service api@8000.service
-```
-
-```
-fleetctl load api@8000.service
-Job api.service loaded on b3dac926.../172.16.16.101
-```
-
-```
-fleetctl list-units
-UNIT            STATE   LOAD    ACTIVE          SUB     DESC           MACHINE
-api@8000.service     loaded  loaded  inactive        dead    apollo-api    b3dac926.../172.16.16.101
-```
-
-```
-fleetctl start api@8000.service
-Job api.service launched on b3dac926.../172.17.8.101
-```
-
-```
-fleetctl list-units
-UNIT            STATE           LOAD    ACTIVE          SUB             DESC            MACHINE
-api@8000.service     launched        loaded  activating      start-pre       apollo-api     b3dac926.../172.17.8.101
 ```
 
 Reloading user-data
