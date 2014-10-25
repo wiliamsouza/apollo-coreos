@@ -56,6 +56,7 @@ Set the environment you are working on.
 export APOLLO_ENVIRONMENT=local
 export APOLLO_TAG=$APOLLO_ENVIRONMENT
 export DOCKER_REGISTRY="${APOLLO_ENVIRONMENT}.registry.apollolab.com.br:5000"
+export FLEETCTL_TUNNEL=172.16.16.101
 ```
 
 It recommended to add it to `~/.bashrc`. It's used in other projects.
@@ -75,7 +76,7 @@ ssh
 Add the following to `~/.ssh/config`:
 
 ```
-Host coreos
+Host apollo
   User     core
   HostName 172.16.16.101
   IdentityFile ~/.ssh/id_rsa.pub
@@ -118,11 +119,7 @@ You will need a local `docker-registry`. For more info
 Fleet
 -----
 
-Configuring `fleet`.
-
-```
-export FLEETCTL_TUNNEL=172.16.16.101
-```
+List machines.
 
 ```
 fleetctl list-machines
